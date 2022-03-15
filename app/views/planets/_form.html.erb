@@ -1,0 +1,48 @@
+<%= form_with(model: planet, local: true) do |form| %>
+  <% if planet.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <h5><%= pluralize(planet.errors.count, 'error') %> prohibited this planet from being saved:</h5>
+      <ul>
+        <% planet.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :mass %>
+    <%= form.text_field :mass, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :star_id %>
+    <%= form.select :star_id, Star.order(:name).pluck(:name, :id), {}, class: 'form-select' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :distance_from_star %>
+    <%= form.text_field :distance_from_star, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :orbital_period %>
+    <%= form.text_field :orbital_period, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :category %>
+    <%= form.select :category,
+                    options_for_select(Planet.categories.map {|key, value| [t("planet.category.#{key}"), Planet.categories.key(value)]}), 
+                    {},
+                    class: 'form-select' %>
+
+  </div>
+  <div class="mb-3 form-check">
+    <%= form.check_box :tidally_locked, class: 'form-check-input' %>
+    <%= form.label :tidally_locked, class: 'form-check-label'%>
+  </div>
+  <div class="actions">
+    <%= form.submit t('actions.save'), class: 'btn btn-success min-width-btn' %>
+    <%= link_to t('actions.back'), planets_path, class: 'btn btn-light min-width-btn' %>
+  </div>
+<% end %>

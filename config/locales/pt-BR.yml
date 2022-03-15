@@ -1,0 +1,128 @@
+pt-BR:
+  views:
+    pagination:
+      truncate: '...'
+      first: 'Primeira'
+      previous: 'Anterior'
+      next: 'Próxima'
+      last: 'Ultima'
+  activerecord:
+    models:
+      star:
+        one: 'Estrela'
+        other: 'Estrelas'
+      planet:
+        one: 'Planeta'
+        other: 'Planetas'
+      moon:
+        one: 'Lua'
+        other: 'Luas'
+    attributes:
+      star:
+        name: 'Nome'
+        mass: 'Massa (em massas da Terra)'
+        category: 'Categoria'
+      planet:
+        name: 'Nome'
+        mass: 'Massa (em massas da Terra)'
+        star: 'Estrela'
+        star_id: 'Estrela'
+        tidally_locked: 'Rotação sincronizada'
+        distance_from_star: 'Distância da estrela (UA)'
+        orbital_period: 'Período orbital (em dias terrestres)'
+        category: 'Categoria'
+      moon:
+        name: 'Nome'
+        mass: 'Massa (em massas da Terra)'
+        planet_id: 'Planeta'
+        distance_from_planet: 'Distância do planeta (UA)'
+        orbital_period: 'Período orbital (em dias terrestres)'
+        tidally_locked: 'Rotação sincronizada'
+    errors:
+      models:
+        star:
+          attributes:
+            name:
+              blank: 'deve ser preenchido'
+            mass:
+              blank: 'deve ser preenchida'
+              not_a_number: 'deve ser um número'
+              greater_than: 'deve ser um número positivo'
+        planet:
+          attributes:
+            name:
+              blank: 'deve ser preenchido'
+            mass:
+              blank: 'deve ser preenchida'
+              not_a_number: 'deve ser um número'
+              greater_than: 'deve ser um número positivo'
+            distance_from_star:
+              blank: 'deve ser preenchida'
+              not_a_number: 'deve ser um número'
+              greater_than: 'deve ser um número positivo'
+            orbital_period:
+              blank: 'deve ser preenchido'
+              not_a_number: 'deve ser um número'
+              greater_than: 'deve ser um número positivo'
+            star:
+              required: 'deve ser selecionada'
+  planet:
+    category:
+      rocky: 'Rochoso'
+      gaseous: 'Gasoso'
+    actions:
+      new: 'Novo Planeta'
+      show: 'Detalhes do Planeta'
+      edit: 'Editar Planeta'
+  star:
+    actions:
+      new: 'Nova Estrela'
+      show: 'Detalhes da Estrela'
+      edit: 'Editar Estrela'
+  moon:
+    actions:
+      new: 'Nova Lua'
+      show: 'Detalhes da Lua'
+      edit: 'Editar Lua'
+  actions:
+    save: 'Salvar'
+    back: 'Voltar'
+    show: 'Exibir'
+    edit: 'Editar'
+    delete: 'Apagar'
+  dashboards:
+    common:
+      type: 'Tipo'
+      count: 'Quantidade'
+      category: 'Categoria'
+      distance: 'Distância'
+      mass: 'Massa'
+    body_count:
+      title: 'Quantidade de corpos celestes'
+    stars_count:
+      title: 'Número de estrelas por categoria'
+      categories:
+        o: 'Categoria O'
+        b: 'Categoria B'
+        a: 'Categoria A'
+        f: 'Categoria F'
+        g: 'Categoria G'
+        k: 'Categoria K'
+        m: 'Categoria M'
+    top_5_mass:
+      title: '5 sistemas com maior massa total'
+    habitable_zone:
+      title: 'Planetas na zona habitável'
+      too_close: 'Perto demais'
+      sweet_spot: 'Na zana habitável'
+      too_far: 'Longe demais'
+    habitable_candidates:
+      title: '5 candidatos mais próximos'
+    moons_per_star:
+      title: 'Luas dos sistemas recentes'
+    closest_systems:
+      title: 'Resumo dos sistemas mais próximos'
+      planets_count: 'Número de planetas'
+      biggest_planet: 'Maior planeta'
+      moons_count: 'Número de luas'
+      biggest_moon: 'Maior lua'

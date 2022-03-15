@@ -1,0 +1,10 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+  <div class="position-sticky pt-3">
+    <ul class="nav flex-column">
+      <%= render partial: 'nav_item', locals: { key: 'dashboard', controller: 'dashboards' } %>
+      <%= render partial: 'nav_item', locals: { model: Star } %>
+      <%= render partial: 'nav_item', locals: { model: Planet } %>
+      <%= render partial: 'nav_item', locals: { model: Moon } %>
+    </ul>
+  </div>
+</nav>

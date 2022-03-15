@@ -1,0 +1,11 @@
+<% model ||= nil %>
+<% key ||= model.model_name.to_s.pluralize.underscore %>
+<% label = model.present? ? model.model_name.human(count: 2) : t("nav_items.#{ key }") %>
+<% controller ||= key %>
+
+<li class="nav-item">
+  <%= link_to send("#{key}_path"), class: "nav-link #{'active' if controller_name == controller }" do %>
+    <svg height="32" width="32"><use href="/images/icons.svg#<%= key %>"/></svg>
+    <%= label %>
+  <%- end %>
+</li>

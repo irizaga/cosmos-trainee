@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2"><%= t('star.actions.show') %></h1>
+</div>
+
+<%= form_with(model: @star, local: true) do |form| %>
+  <div class="mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control', readonly: true %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :mass %>
+    <%= form.text_field :mass, class: 'form-control', readonly: true %>
+  </div>
+<% end %>
+
+<h2><%= Planet.model_name.human(count: 2) %></h2>
+<table class="data-table table table-striped table-sm">
+  <thead>
+    <tr>
+      <th><%= Planet.human_attribute_name('name') %></th>
+      <th><%= Planet.human_attribute_name('mass') %></th>
+      <th><%= Planet.human_attribute_name('category') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @star.planets.each do |planet| %>
+      <tr>
+        <td><%= planet.name %></td>
+        <td><%= planet.mass %></td>
+        <td><%= t("planet.category.#{planet.category}") %></td>
+        <td>
+          <%= link_to planet, class: 'btn btn-light' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#show"/></svg>
+          <%- end %>
+          <%= link_to edit_planet_path(planet),class: 'btn btn-primary' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#edit"/></svg>
+          <%- end %>
+          <%= link_to planet, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#delete"/></svg>
+          <%- end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('actions.edit'), edit_star_path(@star), class: 'btn btn-primary min-width-btn' %> 
+<%= link_to t('actions.back'), :back, class: "btn btn-light min-width-btn" %>

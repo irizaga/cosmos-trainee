@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2"><%= Moon.model_name.human(count: 2) %></h1>
+</div>
+
+<table class="data-table table table-striped table-sm">
+  <thead>
+    <tr>
+      <th><%= Moon.human_attribute_name('name') %></th>
+      <th><%= Moon.human_attribute_name('planet_id') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @moons.each do |moon| %>
+      <tr>
+        <td><%= moon.name %></td>
+        <td><%= moon.planet.name %></td>
+        <td>
+          <%= link_to moon, class: 'btn btn-light' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#show"/></svg>
+          <%- end %>
+          <%= link_to edit_moon_path(moon),class: 'btn btn-primary' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#edit"/></svg>
+          <%- end %>
+          <%= link_to moon, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#delete"/></svg>
+          <%- end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @moons, theme: 'bootstrap-5' %>
+
+<%= link_to t('moon.actions.new'), new_moon_path,class: "btn btn-success min-width-btn" %>
