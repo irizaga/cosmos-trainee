@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2"><%%= <%= singular_table_name.titleize %>.model_name.human(count: 2) %></h1>
+</div>
+
+<table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <th><%%= <%= singular_table_name.titleize %>.human_attribute_name('<%= attribute.name %>') %></th>
+      <% end -%>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+    <tr>
+      <% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+      <% end -%>
+      <td>
+        <%%= link_to t('actions.show'), <%= singular_table_name %>, class: 'btn btn-light min-width-btn' %>
+        <%%= link_to t('actions.edit'), edit_<%= singular_table_name %>_path(<%= singular_table_name %>),class: 'btn btn-primary min-width-btn'  %>
+        <%%= link_to t('actions.delete'), <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger min-width-btn'%>
+      </td>
+    </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+<%%= link_to t('<%= singular_table_name %>.actions.new'), new_<%= singular_table_name %>_path,class: "btn btn-success min-width-btn" %>

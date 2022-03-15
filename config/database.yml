@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  username: postgres
+  password: irizaga00
+
+development:
+  <<: *default
+  database: cosmos_development
+
+test:
+  <<: *default
+  database: cosmos_test
+
+production:
+  <<: *default
+  database: cosmos_production
+  username: cosmos
+  password: <%= ENV["COSMOS_DATABASE_PASSWORD"] %>

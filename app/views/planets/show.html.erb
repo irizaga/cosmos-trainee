@@ -1,0 +1,71 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2"><%= t('planet.actions.show') %></h1>
+</div>
+
+<%= form_with(model: @planet, local: true) do |form| %>
+  <div class="mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control', readonly: true %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :mass %>
+    <%= form.text_field :mass, class: 'form-control', readonly: true %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :star_id %>
+    <%= form.select :star_id, Star.order(:name).pluck(:name, :id), {}, class: 'form-select', disabled: true %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :distance_from_star %>
+    <%= form.text_field :distance_from_star, class: 'form-control', readonly: true %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :orbital_period %>
+    <%= form.text_field :orbital_period, class: 'form-control', readonly: true %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :category %>
+    <%= form.select :category,
+                    options_for_select(Planet.categories.map {|key, value| [t("planet.category.#{key}"), Planet.categories.key(value)]}), 
+                    {},
+                    class: 'form-select',
+                    disabled: true %>
+  </div>
+  <div class="mb-3 form-check">
+    <%= form.check_box :tidally_locked, class: 'form-check-input', disabled: true %>
+    <%= form.label :tidally_locked, class: "form-check-label" %>
+  </div>
+<% end %>
+
+<h2>Luas</h2>
+<table class="data-table table table-striped table-sm">
+  <thead>
+    <tr>
+      <th><%= Moon.human_attribute_name('name') %></th>
+      <th><%= Moon.human_attribute_name('mass') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @planet.moons.each do |moon| %>
+      <tr>
+        <td><%= moon.name %></td>
+        <td><%= moon.mass %></td>
+        <td>
+          <%= link_to moon, class: 'btn btn-light' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#show"/></svg>
+          <%- end %>
+          <%= link_to edit_moon_path(moon),class: 'btn btn-primary' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#edit"/></svg>
+          <%- end %>
+          <%= link_to moon, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#delete"/></svg>
+          <%- end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('actions.edit'), edit_planet_path(@planet), class: 'btn btn-primary min-width-btn' %> 
+<%= link_to t('actions.back'), :back, class: "btn btn-light min-width-btn" %>

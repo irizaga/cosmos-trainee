@@ -1,0 +1,32 @@
+<%= form_with(model: star, local: true) do |form| %>
+  <% if star.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <h5><%= pluralize(star.errors.count, 'error') %> prohibited this star from being saved:</h5>
+      <ul>
+        <% star.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :mass %>
+    <%= form.text_field :mass, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :category %>
+    <%= form.select :category,
+                    options_for_select(Star.categories.map {|key, value| [key.to_s, Planet.categories.key(value)]}), 
+                    {},
+                    class: 'form-select' %>
+
+  </div>
+  <div class="actions">
+    <%= form.submit t('actions.save'), class: 'btn btn-success min-width-btn' %>
+    <%= link_to t('actions.back'), stars_path, class: 'btn btn-light min-width-btn' %>
+  </div>
+<% end %>

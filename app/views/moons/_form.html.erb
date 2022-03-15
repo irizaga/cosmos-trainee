@@ -1,0 +1,40 @@
+<%= form_with(model: moon, local: true) do |form| %>
+  <% if moon.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <h5><%= pluralize(moon.errors.count, 'error') %> prohibited this moon from being saved:</h5>
+      <ul>
+        <% moon.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :mass %>
+    <%= form.text_field :mass, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :planet_id %>
+    <%= form.select :planet_id, Planet.order(:name).pluck(:name, :id), {}, class: 'form-select' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :distance_from_planet %>
+    <%= form.text_field :distance_from_planet, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :orbital_period %>
+    <%= form.text_field :orbital_period, class: 'form-control' %>
+  </div>
+  <div class="mb-3 form-check">
+    <%= form.check_box :tidally_locked, class: 'form-check-input' %>
+    <%= form.label :tidally_locked, class: 'form-check-label'%>
+  </div>
+  <div class="actions">
+    <%= form.submit t('actions.save'), class: 'btn btn-success min-width-btn' %>
+    <%= link_to t('actions.back'), moons_path, class: 'btn btn-light min-width-btn' %>
+  </div>
+<% end %>

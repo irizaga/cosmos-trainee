@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2"><%= Planet.model_name.human(count: 2) %></h1>
+</div>
+
+<table class="data-table table table-striped table-sm">
+  <thead>
+    <tr>
+      <th><%= Planet.human_attribute_name('name') %></th>
+      <th><%= Planet.human_attribute_name('star_id') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @planets.each do |planet| %>
+      <tr>
+        <td><%= planet.name %></td>
+        <td><%= planet.star.name %></td>
+        <td>
+          <%= link_to planet, class: 'btn btn-light' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#show"/></svg>
+          <%- end %>
+          <%= link_to edit_planet_path(planet),class: 'btn btn-primary' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#edit"/></svg>
+          <%- end %>
+          <%= link_to planet, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+            <svg height="32" width="32"><use href="/images/icons.svg#delete"/></svg>
+          <%- end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @planets, theme: 'bootstrap-5' %>
+
+<%= link_to t('planet.actions.new'), new_planet_path,class: "btn btn-success min-width-btn" %>

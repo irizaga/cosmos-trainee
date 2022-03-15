@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2"><%%= t('<%= singular_table_name %>.actions.show') %></h1>
+</div>
+
+<%%= form_with(model: @<%= singular_table_name %>, local: true) do |form| %>
+  <% attributes.each do |attribute| -%>
+    <% if attribute.type == :boolean -%>
+      <div class="mb-3 form-check">
+        <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: 'form-check-input', disabled: true %>
+        <%%= form.label :<%= attribute.column_name %>, class: "form-check-label" %>
+      </div>
+    <% else -%>
+      <div class="mb-3">
+        <%%= form.label :<%= attribute.column_name %> %>
+        <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: 'form-control', readonly: true %>
+      </div>
+    <% end -%>
+  <% end -%>
+<%% end %>
+<%%= link_to t('actions.edit'), edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary min-width-btn' %> 
+<%%= link_to t('actions.back'), :back, class: "btn btn-light min-width-btn" %>
