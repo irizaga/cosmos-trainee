@@ -11,34 +11,12 @@
         </tr>
       </thead>
       <tbody>
+        <% @stars.categories.each do |category| %>
         <tr>
-          <td><%= t('dashboards.stars_count.categories.o') %></td>
-          <td>-</td>
+          <td><%= t("dashboards.stars_count.categories.#{category[0].downcase}") %></td>
+          <td><%= @stars.where(category: category).length %></td>
         </tr>
-        <tr>
-          <td><%= t('dashboards.stars_count.categories.b') %></td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td><%= t('dashboards.stars_count.categories.a') %></td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td><%= t('dashboards.stars_count.categories.f') %></td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td><%= t('dashboards.stars_count.categories.g') %></td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td><%= t('dashboards.stars_count.categories.k') %></td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td><%= t('dashboards.stars_count.categories.m') %></td>
-          <td>-</td>
-        </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
