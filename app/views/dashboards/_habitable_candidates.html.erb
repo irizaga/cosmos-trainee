@@ -12,31 +12,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
+        <% @habitable_candidates.slice(0,5).each do |candidate| %>
+          <tr>
+            <td><%= candidate.name %></td>
+            <td><%= candidate.star.name %></td>
+            <td><%= candidate.star.distance_from_earth %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
