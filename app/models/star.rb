@@ -2,6 +2,7 @@
 
 class Star < ApplicationRecord
   has_many :planets, dependent: :destroy
+  has_many :moons, through: :planets
 
   enum :category, %i[O B A F G K M]
 
