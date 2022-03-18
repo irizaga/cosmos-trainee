@@ -13,15 +13,15 @@
       <tbody>
         <tr>
           <td><%= t('dashboards.habitable_zone.too_close') %></td>
-          <td>-</td>
+          <td><%= @habitable_zones[0] %></td>
         </tr>
         <tr>
           <td><%= t('dashboards.habitable_zone.sweet_spot') %></td>
-          <td>-</td>
+          <td><%= @habitable_zones[1] %></td>
         </tr>
         <tr>
           <td><%= t('dashboards.habitable_zone.too_far') %></td>
-          <td>-</td>
+          <td><%= @habitable_zones[2] %></td>
         </tr>
       </tbody>
     </table>

@@ -11,26 +11,12 @@
         </tr>
       </thead>
       <tbody>
+        <% @most_recent_systems.each do |recent| %>
         <tr>
-          <td>-</td>
-          <td>-</td>
+          <td><%= recent.name %></td>
+          <td><%= "#{recent.moons.first.name} and other #{recent.moons.size} moons" %></td>
         </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-        </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

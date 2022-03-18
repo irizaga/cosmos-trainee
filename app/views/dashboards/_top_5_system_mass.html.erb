@@ -11,26 +11,12 @@
         </tr>
       </thead>
       <tbody>
+        <% @heaviest_systems.each do |heavy_system| %>
         <tr>
-          <td>-</td>
-          <td>-</td>
+          <td><%= heavy_system[0] %></td>
+          <td><%= heavy_system[1] %></td>
         </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-        </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
